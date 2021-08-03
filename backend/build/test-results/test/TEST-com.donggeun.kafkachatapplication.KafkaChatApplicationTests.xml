@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.donggeun.kafkachatapplication.KafkaChatApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-01T06:30:10" hostname="gimdong-geun-ui-MacBookPro.local" time="0.281">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.donggeun.kafkachatapplication.KafkaChatApplicationTests" time="0.281"/>
+  <system-out><![CDATA[15:30:06.798 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:30:06.811 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:30:06.850 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+15:30:06.860 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests], using SpringBootContextLoader
+15:30:06.863 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]: class path resource [com/donggeun/kafkachatapplication/KafkaChatApplicationTests-context.xml] does not exist
+15:30:06.863 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]: class path resource [com/donggeun/kafkachatapplication/KafkaChatApplicationTestsContext.groovy] does not exist
+15:30:06.864 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:30:06.864 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]: KafkaChatApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:30:06.898 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]
+15:30:06.959 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/kimdonggeun/IdeaProjects/KafkaChatApplication/build/classes/java/main/com/donggeun/kafkachatapplication/KafkaChatApplication.class]
+15:30:06.960 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.donggeun.kafkachatapplication.KafkaChatApplication for test class com.donggeun.kafkachatapplication.KafkaChatApplicationTests
+15:30:07.064 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.donggeun.kafkachatapplication.KafkaChatApplicationTests]: using defaults.
+15:30:07.064 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+15:30:07.078 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@27277e37, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@29df331b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4be6c1ce, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1b071b5f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7cd18ce, org.springframework.test.context.support.DirtiesContextTestExecutionListener@575aa4c7, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2a4ff753, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@931dca6, org.springframework.test.context.event.EventPublishingTestExecutionListener@66d5be26, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@642b42a7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@310bd41e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3658fa75, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7d375616, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@43371d6d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2c739a31]
+15:30:07.081 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3a4b853e testClass = KafkaChatApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@7b7c9af5 testClass = KafkaChatApplicationTests, locations = '{}', classes = '{class com.donggeun.kafkachatapplication.KafkaChatApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@67710314, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2e52559f, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@781d850b, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@f35825e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1b2d5e25, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@67492236], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+15:30:07.109 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.3)
+
+2021-08-01 15:30:07.503  INFO 25258 --- [    Test worker] c.d.k.KafkaChatApplicationTests          : Starting KafkaChatApplicationTests using Java 11.0.11 on gimdong-geun-ui-MacBookPro.local with PID 25258 (started by kimdonggeun in /Users/kimdonggeun/IdeaProjects/KafkaChatApplication)
+2021-08-01 15:30:07.506  INFO 25258 --- [    Test worker] c.d.k.KafkaChatApplicationTests          : No active profile set, falling back to default profiles: default
+2021-08-01 15:30:09.498  INFO 25258 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-08-01 15:30:09.587  INFO 25258 --- [    Test worker] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
+	bootstrap.servers = [172.20.10.3:9093, 172.20.10.3:9094, 172.20.10.3:9095]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-08-01 15:30:09.683  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 2.7.1
+2021-08-01 15:30:09.684  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 61dbce85d0d41457
+2021-08-01 15:30:09.685  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1627799409682
+2021-08-01 15:30:09.996  INFO 25258 --- [| adminclient-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for adminclient-1 unregistered
+2021-08-01 15:30:10.003  INFO 25258 --- [| adminclient-1] org.apache.kafka.common.metrics.Metrics  : Metrics scheduler closed
+2021-08-01 15:30:10.003  INFO 25258 --- [| adminclient-1] org.apache.kafka.common.metrics.Metrics  : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2021-08-01 15:30:10.003  INFO 25258 --- [| adminclient-1] org.apache.kafka.common.metrics.Metrics  : Metrics reporters closed
+2021-08-01 15:30:10.025  INFO 25258 --- [    Test worker] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [172.20.10.3:9093, 172.20.10.3:9094, 172.20.10.3:9095]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-null-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = null
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2021-08-01 15:30:10.062  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 2.7.1
+2021-08-01 15:30:10.062  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 61dbce85d0d41457
+2021-08-01 15:30:10.062  INFO 25258 --- [    Test worker] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1627799410062
+2021-08-01 15:30:10.087  INFO 25258 --- [    Test worker] o.a.k.clients.consumer.KafkaConsumer     : [Consumer clientId=consumer-null-1, groupId=null] Subscribed to topic(s): testTopics
+2021-08-01 15:30:10.117  INFO 25258 --- [    Test worker] c.d.k.KafkaChatApplicationTests          : Started KafkaChatApplicationTests in 3.002 seconds (JVM running for 4.024)
+2021-08-01 15:30:10.123  INFO 25258 --- [     null-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-null-1, groupId=null] Cluster ID: e7Hg7a0fRd2U3xfcouSQ3g
+2021-08-01 15:30:10.125  INFO 25258 --- [     null-0-C-1] o.a.k.c.c.internals.AbstractCoordinator  : [Consumer clientId=consumer-null-1, groupId=null] Discovered group coordinator 172.20.10.3:9095 (id: 2147483644 rack: null)
+2021-08-01 15:30:10.130  INFO 25258 --- [     null-0-C-1] o.a.k.c.c.internals.AbstractCoordinator  : [Consumer clientId=consumer-null-1, groupId=null] (Re-)joining group
+2021-08-01 15:30:10.155  INFO 25258 --- [     null-0-C-1] o.a.k.c.c.internals.AbstractCoordinator  : [Consumer clientId=consumer-null-1, groupId=null] (Re-)joining group
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
