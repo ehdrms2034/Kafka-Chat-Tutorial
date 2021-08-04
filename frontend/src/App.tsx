@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/lib/table';
+import { ChatMessage } from './model/ChatModel';
+import { Client, Stomp } from "@stomp/stompjs";
 
 const FlexBody = styled.div`
   display: flex;
@@ -59,6 +61,37 @@ function App() {
 
   useEffect(() => {
     const sockJS = new SockJS("http://localhost:8080/socket-chat");
+    const stompClient = Stomp.over(sockJS);
+    const testData: ChatMessage = {
+      messageId: 0,
+      roomId: 0,
+      userId: 0,
+      username: "test",
+      content: "HelloWorld"
+    }
+    stompClient.onConnect = () => {
+      console.log("소켓 연결됨");
+      stompClient.subscribe("/topic/0", (data) => {
+        JSON.parse(data.body.toString())
+        console.log("ㅇㄴㅁㄹ",data.body);
+
+      });
+      stompClient.publish({
+        destination:"/app/send",
+        body: JSON.stringify(testData)
+      });
+
+    }
+    stompClient.onDisconnect = () => {
+      console.log("소켓 연결끊김");
+    }
+    stompClient.onStompError = () => {
+      console.error("dsfad");
+    }
+
+    stompClient.activate();
+
+
 
   }, []);
 

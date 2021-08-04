@@ -1,11 +1,14 @@
 package com.donggeun.kafkachatapplication.service.Impl;
 
+import com.donggeun.kafkachatapplication.config.SocketConfiguration;
 import com.donggeun.kafkachatapplication.model.BusinessException;
 import com.donggeun.kafkachatapplication.model.ChatMessage;
 import com.donggeun.kafkachatapplication.model.ChatRoom;
 import com.donggeun.kafkachatapplication.model.ErrCode;
 import com.donggeun.kafkachatapplication.service.ChatService;
+import com.donggeun.kafkachatapplication.service.JacksonUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DefaultChatServiceImpl implements ChatService {
 
     private final Map<Long, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
@@ -70,7 +74,8 @@ public class DefaultChatServiceImpl implements ChatService {
                 .username("유저")
                 .build();
 
-        simpMessagingTemplate.convertAndSend(Long.toString(roomId), chatMessage);
+        String jsonFromMessage = JacksonUtil.objectToJson(chatMessage);
+        simpMessagingTemplate.convertAndSend(SocketConfiguration.TOPIC_PREFIX + roomId, jsonFromMessage);
     }
 
     @Override

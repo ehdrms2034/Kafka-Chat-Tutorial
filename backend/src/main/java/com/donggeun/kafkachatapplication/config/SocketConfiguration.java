@@ -11,10 +11,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class SocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
+    static public String TOPIC_PREFIX= "/topic";
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config){
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/send");
+        config.enableSimpleBroker(TOPIC_PREFIX);
+        config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
