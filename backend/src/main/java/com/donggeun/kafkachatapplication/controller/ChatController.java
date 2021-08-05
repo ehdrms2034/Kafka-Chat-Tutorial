@@ -7,6 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/api/chat")
+@MessageMapping("/socket/chat")
 @RequiredArgsConstructor
 public class ChatController {
 

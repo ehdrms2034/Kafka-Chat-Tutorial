@@ -2,14 +2,14 @@ import { makeAutoObservable } from 'mobx';
 
 class AppStore {
 
-    data = 0;
+    isChatModalOpened = false;
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this);
     }
 
-    addData(number : number){
-        this.data+=number;
+    setChatModalOpened(state: boolean) {
+        this.isChatModalOpened = state;
     }
 
 }

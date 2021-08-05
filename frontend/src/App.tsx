@@ -9,7 +9,8 @@ import SockJS from 'sockjs-client';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/lib/table';
 import { ChatMessage } from './model/ChatModel';
-import { Client, Stomp } from "@stomp/stompjs";
+import { Stomp } from "@stomp/stompjs";
+import Modal from 'antd/lib/modal/Modal';
 
 const FlexBody = styled.div`
   display: flex;
@@ -20,26 +21,6 @@ const FlexBody = styled.div`
   padding: 10px;
 `;
 
-const chatColumn: ColumnsType<any> = [{
-  title: "채팅방 id",
-  dataIndex: "num",
-  key: "num"
-},
-{
-  title: "제목",
-  dataIndex: "title",
-  key: "title"
-},
-{
-  title: "행동",
-  dataIndex: "action",
-  render: () => (
-    <Button type={"primary"}>
-      입장
-    </Button>
-  )
-},
-]
 
 const fakeData = [{
   num: 0,
@@ -71,15 +52,16 @@ function App() {
     }
     stompClient.onConnect = () => {
       console.log("소켓 연결됨");
-      stompClient.subscribe("/topic/0", (data) => {
-        JSON.parse(data.body.toString())
-        console.log("ㅇㄴㅁㄹ",data.body);
+      stompClient.subscribe("/topic/chat/0", (data) => {
+        const message: ChatMessage = JSON.parse(data.body.toString())
+        console.log("ㅇㄴㅁㄹ", message);
 
       });
       stompClient.publish({
-        destination:"/app/send",
+        destination: "/app/socket/chat/send",
         body: JSON.stringify(testData)
       });
+
 
     }
     stompClient.onDisconnect = () => {
@@ -91,10 +73,35 @@ function App() {
 
     stompClient.activate();
 
-
-
   }, []);
 
+
+  const chatColumn: ColumnsType<any> = [{
+    title: "채팅방 id",
+    dataIndex: "num",
+    key: "num"
+  },
+  {
+    title: "제목",
+    dataIndex: "title",
+    key: "title"
+  },
+  {
+    title: "행동",
+    dataIndex: "action",
+    render: () => (
+      <Button
+        onClick={() => onClickEnterChatRoom(0)}
+        type={"primary"}>
+        입장
+      </Button>
+    )
+  },
+  ]
+
+  const onClickEnterChatRoom = (roomId: number) => {
+    appStore.setChatModalOpened(true);
+  }
 
   return (
     <FlexBody>
@@ -116,6 +123,43 @@ function App() {
           dataSource={fakeData} />
       </Row>
 
+
+      <Modal
+        visible={appStore.isChatModalOpened}
+        onOk={() => appStore.setChatModalOpened(false)}
+        onCancel={() => appStore.setChatModalOpened(false)}
+        title={"김동근님의 채팅방"}
+        footer={null}
+      >
+
+        <div style={{ display: 'flex', width: "100%", height: "50vh", flexDirection: "column" }}>
+          <div style={{ flex: 1, overflow: 'scroll' }}>
+            <div>동근 : 하이</div>
+            <div>당근 : 하이</div>
+            <div>둥근 : 하이</div>
+            <div>융근 : 하이</div>
+            <div>몽근 : 하이</div>
+            <div>둥골 : 하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+            <div>하이</div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: "row" }}>
+            <Input></Input>
+            <Button>전송</Button>
+          </div>
+
+
+        </div>
+      </Modal>
     </FlexBody>
   );
 }

@@ -75,7 +75,9 @@ public class DefaultChatServiceImpl implements ChatService {
                 .build();
 
         String jsonFromMessage = JacksonUtil.objectToJson(chatMessage);
-        simpMessagingTemplate.convertAndSend(SocketConfiguration.TOPIC_PREFIX + roomId, jsonFromMessage);
+        simpMessagingTemplate.convertAndSend(SocketConfiguration.TOPIC_PREFIX + "/chat/" + roomId, jsonFromMessage);
+
+        log.info("[send] chat message 전송 room ID : {}, user ID : {}", roomId, userId);
     }
 
     @Override
