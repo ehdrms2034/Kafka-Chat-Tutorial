@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { appStore } from './store/AppStore';
 import { observer } from 'mobx-react-lite';
 import { Button, Row, Table, Typography, Input, TableColumnProps, Space } from 'antd';
 import { useEffect } from 'react';
-import SockJS from 'sockjs-client';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/lib/table';
-import { ChatMessage } from './model/ChatModel';
-import { Stomp } from "@stomp/stompjs";
+import { ChatMessage, ChatRoom } from './model/ChatModel';
 import Modal from 'antd/lib/modal/Modal';
 
 const FlexBody = styled.div`
@@ -22,64 +20,21 @@ const FlexBody = styled.div`
 `;
 
 
-const fakeData = [{
-  num: 0,
-  title: "김동근님의 채팅방"
-}, {
-  num: 1,
-  title: "김동근님의 채팅방"
-},
-{
-  num: 2,
-  title: "김동근님의 채팅방"
-}, {
-  num: 3,
-  title: "김동근님의 채팅방"
-}
-]
-
 function App() {
 
+  const [chatContent, setChatContent] = useState("");
+
   useEffect(() => {
-    const sockJS = new SockJS("http://localhost:8080/socket-chat");
-    const stompClient = Stomp.over(sockJS);
-    const testData: ChatMessage = {
-      messageId: 0,
-      roomId: 0,
-      userId: 0,
-      username: "test",
-      content: "HelloWorld"
+    async function init() {
+      appStore.updateRooms();
     }
-    stompClient.onConnect = () => {
-      console.log("소켓 연결됨");
-      stompClient.subscribe("/topic/chat/0", (data) => {
-        const message: ChatMessage = JSON.parse(data.body.toString())
-        console.log("ㅇㄴㅁㄹ", message);
-
-      });
-      stompClient.publish({
-        destination: "/app/socket/chat/send",
-        body: JSON.stringify(testData)
-      });
-
-
-    }
-    stompClient.onDisconnect = () => {
-      console.log("소켓 연결끊김");
-    }
-    stompClient.onStompError = () => {
-      console.error("dsfad");
-    }
-
-    stompClient.activate();
-
+    init();
   }, []);
 
-
-  const chatColumn: ColumnsType<any> = [{
+  const chatColumn: ColumnsType<ChatRoom> = [{
     title: "채팅방 id",
-    dataIndex: "num",
-    key: "num"
+    dataIndex: "roomId",
+    key: "roomId"
   },
   {
     title: "제목",
@@ -89,9 +44,11 @@ function App() {
   {
     title: "행동",
     dataIndex: "action",
-    render: () => (
+    render: (dataIndex, data) => (
       <Button
-        onClick={() => onClickEnterChatRoom(0)}
+        onClick={() => {
+          onClickEnterChatRoom(data.roomId)
+        }}
         type={"primary"}>
         입장
       </Button>
@@ -100,7 +57,24 @@ function App() {
   ]
 
   const onClickEnterChatRoom = (roomId: number) => {
+    appStore.subscribeRoom(roomId, (message: ChatMessage) => {
+      appStore.receiveMessage(roomId, message);
+    });
+
+    const room = appStore.rooms.find(data => data.roomId === roomId);
+    appStore.setCurrentRoom(room);
     appStore.setChatModalOpened(true);
+  }
+
+  const onHandleAtModalExit = () => {
+    appStore.initChatMessages();
+    appStore.describeRoom();
+    appStore.setChatModalOpened(false);
+  }
+
+  const onEnterInChatMessageBar = (roomId: number, content: string) => {
+    appStore.sendMessageToRoom(roomId, content);
+    setChatContent("");
   }
 
   return (
@@ -114,49 +88,48 @@ function App() {
 
 
       <Row style={{ width: "100%", display: "flex" }}>
-        <span>닉네임 :</span> <Input style={{ marginLeft: "5px", flex: "1" }} />
+        <span>닉네임 :</span>
+        <Input
+          value={appStore.username}
+          onChange={e => {
+            appStore.setUsername(e.currentTarget.value);
+          }}
+          style={{ marginLeft: "5px", flex: "1" }} />
       </Row>
 
       <Row style={{ width: "100%" }}>
         <Table style={{ width: "100%" }}
           columns={chatColumn}
-          dataSource={fakeData} />
+          dataSource={appStore.rooms} />
       </Row>
 
 
       <Modal
         visible={appStore.isChatModalOpened}
         onOk={() => appStore.setChatModalOpened(false)}
-        onCancel={() => appStore.setChatModalOpened(false)}
+        onCancel={() => { onHandleAtModalExit() }}
         title={"김동근님의 채팅방"}
         footer={null}
       >
 
         <div style={{ display: 'flex', width: "100%", height: "50vh", flexDirection: "column" }}>
           <div style={{ flex: 1, overflow: 'scroll' }}>
-            <div>동근 : 하이</div>
-            <div>당근 : 하이</div>
-            <div>둥근 : 하이</div>
-            <div>융근 : 하이</div>
-            <div>몽근 : 하이</div>
-            <div>둥골 : 하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
-            <div>하이</div>
+            {appStore.messages.map(chatMessage => (<div>
+              {chatMessage.username} : {chatMessage.content}
+            </div>)
+            )}
           </div>
 
           <div style={{ display: 'flex', flexDirection: "row" }}>
-            <Input></Input>
+            <Input
+              value={chatContent}
+              onChange={e => setChatContent(e.target.value)}
+              onPressEnter={e => {
+                onEnterInChatMessageBar(1, chatContent);
+              }}
+            ></Input>
             <Button>전송</Button>
           </div>
-
 
         </div>
       </Modal>

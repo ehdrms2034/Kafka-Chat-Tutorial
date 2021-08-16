@@ -7,3 +7,10 @@ export interface ChatMessage {
     createdDateTime?: Date;
     updatedDateTime?: Date;
 }
+
+
+export interface ChatRoom {
+    roomId : number;
+    title : string;
+    description : string;
+}

@@ -1,6 +1,6 @@
 local:
   kafka:
-    host: 192.168.219.105
+    host: 172.30.81.108
 
 spring:
   kafka:

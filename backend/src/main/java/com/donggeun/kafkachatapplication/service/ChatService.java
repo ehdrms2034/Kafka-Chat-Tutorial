@@ -12,7 +12,7 @@ public interface ChatService {
 
     List<ChatRoom> getRooms();
 
-    void sendMessage(long roomId, long userId, String content);
+    void sendMessage(long roomId, long userId, String username, String content);
 
     List<String> getRoomUsers(long roomId);
 

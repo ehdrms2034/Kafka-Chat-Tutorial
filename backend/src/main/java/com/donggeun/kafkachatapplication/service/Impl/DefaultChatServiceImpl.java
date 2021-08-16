@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +26,20 @@ import java.util.concurrent.atomic.AtomicLong;
 public class DefaultChatServiceImpl implements ChatService {
 
     private final Map<Long, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
+    private final Map<Long, List<ChatMessage>> chatMessages = new ConcurrentHashMap<>();
+
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final AtomicLong roomIndex = new AtomicLong(0);
+
+    @PostConstruct
+    public void init() {
+        ChatRoom chatRoom = ChatRoom.builder()
+                .roomId(1L)
+                .title("테스트")
+                .description("테스트방")
+                .build();
+        chatRoomMap.put(1L, chatRoom);
+    }
 
     @Override
     public void makeRoom(String title, String description) {
@@ -63,7 +76,7 @@ public class DefaultChatServiceImpl implements ChatService {
     }
 
     @Override
-    public void sendMessage(long roomId, long userId, String content) {
+    public void sendMessage(long roomId, long userId, String username, String content) {
         ChatMessage chatMessage = ChatMessage.builder()
                 .messageId(0L)
                 .roomId(roomId)
@@ -71,7 +84,7 @@ public class DefaultChatServiceImpl implements ChatService {
                 .content(content)
                 .updatedDateTime(new Date())
                 .createdDateTime(new Date())
-                .username("유저")
+                .username(username)
                 .build();
 
         String jsonFromMessage = JacksonUtil.objectToJson(chatMessage);
