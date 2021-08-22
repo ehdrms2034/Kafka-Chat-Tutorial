@@ -311,3 +311,11 @@ gradle-app.setting
 backend/gradle/wrapper/
 
 *.lock
+
+backend/.idea/libraries-with-intellij-classes.xml
+
+backend/.idea/uiDesigner.xml
+
+backend/.idea/compiler.xml
+
+backend/.idea/misc.xml

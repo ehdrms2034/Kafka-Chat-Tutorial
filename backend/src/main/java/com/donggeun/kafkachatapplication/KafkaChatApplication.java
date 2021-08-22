@@ -1,16 +1,15 @@
 package com.donggeun.kafkachatapplication;
 
-import com.donggeun.kafkachatapplication.config.KafkaConfiguration;
-import org.apache.kafka.clients.admin.NewTopic;
+import com.donggeun.kafkachatapplication.config.KafkaProducerConfiguration;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
 
 @SpringBootApplication
+@EnableConfigurationProperties
 public class KafkaChatApplication {
 
     public static void main(String[] args) {
@@ -22,11 +21,11 @@ public class KafkaChatApplication {
 //        System.out.println(in);
 //    }
 
-    @Bean
-    public ApplicationRunner runner(KafkaTemplate<String,String> template){
-        return args -> {
-            template.send(KafkaConfiguration.CHAT_TOPIC_NAME, "Hello World");
-        };
-    }
+//    @Bean
+//    public ApplicationRunner runner(KafkaTemplate<String,String> template){
+//        return args -> {
+//            template.send(KafkaProducerConfiguration.CHAT_TOPIC_NAME, "Hello World");
+//        };
+//    }
 
 }

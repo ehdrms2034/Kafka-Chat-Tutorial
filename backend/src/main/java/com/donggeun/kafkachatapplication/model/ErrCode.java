@@ -1,6 +1,9 @@
 package com.donggeun.kafkachatapplication.model;
 
 public enum ErrCode {
+
+    JSON_IO_EXCEPTION(010, "json IOException Error"),
+
     NOT_EXIST_CHATROOM(101, "chatting room not exists."),
     JSON_PARSING_ERROR(102, "json parsing error");
 

@@ -1,11 +1,11 @@
 local:
   kafka:
-    host: 172.30.81.108
+    host: 172.30.80.234
 
 spring:
   kafka:
-    consumer:
-      auto-offset-reset: earliest
+#    consumer:
+#      auto-offset-reset: earliest
     bootstrap-servers:
       - ${local.kafka.host}:9093
       - ${local.kafka.host}:9094
