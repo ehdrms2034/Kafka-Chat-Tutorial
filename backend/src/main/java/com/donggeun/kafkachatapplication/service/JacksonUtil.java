@@ -3,6 +3,7 @@ package com.donggeun.kafkachatapplication.service;
 import com.donggeun.kafkachatapplication.model.BusinessException;
 import com.donggeun.kafkachatapplication.model.ErrCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -28,9 +29,11 @@ public class JacksonUtil {
         }
     }
 
-    public static <T> T bytesToObject(byte[] bytes){
+    public static <T> T bytesToObject(byte[] bytes, Class<T> toClass){
         try{
-            return (T)objectMapper.readValue(bytes, Object.class);
+            Object object = objectMapper.readValue(bytes, Object.class);
+
+            return objectMapper.readValue(bytes, toClass);
         } catch(JsonProcessingException e){
             throw new BusinessException(ErrCode.JSON_PARSING_ERROR);
         } catch (IOException e) {

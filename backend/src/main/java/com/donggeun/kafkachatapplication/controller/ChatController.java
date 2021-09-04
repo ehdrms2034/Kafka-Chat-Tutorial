@@ -6,6 +6,8 @@ import com.donggeun.kafkachatapplication.model.DefaultResponse;
 import com.donggeun.kafkachatapplication.model.requestparam.CreateRoomDTO;
 import com.donggeun.kafkachatapplication.service.ChatService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/chat")
 @MessageMapping("/socket/chat")
-@RequiredArgsConstructor
 public class ChatController {
 
     public final ChatService chatService;
+
+    @Autowired
+    public ChatController(@Qualifier("kafkaChatServiceImpl") ChatService chatService) {
+        this.chatService = chatService;
+    }
 
     @PostMapping("/rooms")
     public DefaultResponse createRoom(@RequestBody CreateRoomDTO createRoomDTO) {

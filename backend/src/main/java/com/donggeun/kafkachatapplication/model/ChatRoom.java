@@ -1,5 +1,6 @@
 package com.donggeun.kafkachatapplication.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Builder;
 import lombok.Data;
 

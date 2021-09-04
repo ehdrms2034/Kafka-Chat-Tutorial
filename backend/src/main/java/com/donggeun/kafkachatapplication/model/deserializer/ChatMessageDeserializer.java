@@ -2,20 +2,31 @@ package com.donggeun.kafkachatapplication.model.deserializer;
 
 import com.donggeun.kafkachatapplication.model.ChatMessage;
 import com.donggeun.kafkachatapplication.service.JacksonUtil;
-import org.springframework.core.serializer.Deserializer;
+import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.serialization.Deserializer;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.Map;
 
 public class ChatMessageDeserializer implements Deserializer<ChatMessage> {
 
+
     @Override
-    public ChatMessage deserialize(InputStream inputStream) throws IOException {
-        return JacksonUtil.bytesToObject(inputStream.readAllBytes());
+    public void configure(Map<String, ?> configs, boolean isKey) {
+        Deserializer.super.configure(configs, isKey);
     }
 
     @Override
-    public ChatMessage deserializeFromByteArray(byte[] serialized) throws IOException {
-        return JacksonUtil.bytesToObject(serialized);
+    public ChatMessage deserialize(String topic, byte[] data) {
+        return JacksonUtil.bytesToObject(data, ChatMessage.class);
+    }
+
+    @Override
+    public ChatMessage deserialize(String topic, Headers headers, byte[] data) {
+        return Deserializer.super.deserialize(topic, headers, data);
+    }
+
+    @Override
+    public void close() {
+        Deserializer.super.close();
     }
 }
